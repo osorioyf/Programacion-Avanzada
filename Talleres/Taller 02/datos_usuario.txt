@@ -1,0 +1,10 @@
+
+Su nombre: fabio
+
+Su genero: femenino
+
+Su edad: 18
+
+Su cedula: 321423
+
+Su movil: 2323423
