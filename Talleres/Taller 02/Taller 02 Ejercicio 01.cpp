@@ -12,7 +12,7 @@ Taller 02
 using namespace std;
 
 //Declaración de variables
-    int op, i, j, a, b, cant, y, d, o;
+    int op, i, j, a, b, cant, y, d, o, cont;
 
 //Estructura para capturar los resultados Max y N
 struct resultados{
@@ -109,14 +109,18 @@ void generarHistograma(){
 
 	cout<<endl<<"      Index    Valor     Histograma"<<endl;;
 	
-	for(j=0;j<cant;j++){
-	    cout<<"  "<<"\t"<<j<<" "<<"\t"<<resultados1.numeros[j]<<"\t";
-	    
-	    for(y=0;y<resultados1.numeros[j];y++){
-	    	cout<<"*";
+	   for(y=0;y<cant;y++){	
+	       cout<<"  "<<"\t"<<y<<" "<<"\t"<<resultados1.numeros[y]<<"\t";
+	    	for(i=0;i<cant;i++){
+	    		if(resultados1.numeros[y]==resultados1.numeros[i]){
+	    			cout<<"*";
+				}
+				
+			}
+			cout<<endl;
 	    }
+	
 	    cout<<endl;
-	}
 }
 
 
