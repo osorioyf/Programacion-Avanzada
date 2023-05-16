@@ -1,0 +1,161 @@
+/******************************************************************************
+Fecha: 10/02/2023
+Autor: Daniel Osorio
+Taller 01
+*******************************************************************************/
+
+#include <iostream>
+#include <cmath>
+
+class Circulo {
+private:
+    float radio;
+public:
+    Circulo(float r) {
+        radio = r;
+    }
+    float area() {
+        return M_PI * radio * radio;
+    }
+    float perimetro() {
+        return 2 * M_PI * radio;
+    }
+    float diametro() {
+        return 2 * radio;
+    }
+};
+
+class TrianguloRectangulo {
+private:
+    float base, altura;
+public:
+    TrianguloRectangulo(float b, float h) {
+        base = b;
+        altura = h;
+    }
+    float area() {
+        return base * altura / 2;
+    }
+    float perimetro() {
+        return base + altura + hipotenusa();
+    }
+    float hipotenusa() {
+        return sqrt(base * base + altura * altura);
+    }
+};
+
+class Persona {
+protected:
+    std::string nombre;
+public:
+    Persona(std::string n) {
+        nombre = n;
+    }
+    virtual void presentarse() {
+        std::cout << "Hola, soy " << nombre << "." << std::endl;
+    }
+};
+
+class Profesor : public Persona {
+public:
+    Profesor(std::string n) : Persona(n) {}
+    virtual void presentarse() {
+        std::cout << "Hola, soy el profesor " << nombre << "." << std::endl;
+    }
+};
+
+class Estudiante : public Persona {
+private:
+    float promedio;
+public:
+    Estudiante(std::string n, float p) : Persona(n) {
+        promedio = p;
+    }
+    virtual void presentarse() {
+        std::cout << "Hola, soy el estudiante " << nombre << " con un promedio de " << promedio << "." << std::endl;
+    }
+    bool puedeTomarProgramacion() {
+        return promedio >= 9.0;
+    }
+};
+
+class Menu {
+public:
+    void mostrar() {
+        int opcion = -1;
+        while (opcion != 0) {
+            std::cout << "Elija una opción:" << std::endl;
+            std::cout << "1. Calcular área, perímetro y diámetro de un círculo" << std::endl;
+            std::cout << "2. Calcular altura, perímetro e hipotenusa de un triángulo rectángulo" << std::endl;
+            std::cout << "3. Crear una persona" << std::endl;
+            std::cout << "4. Crear un profesor" << std::endl;
+            std::cout << "5. Crear un estudiante" << std::endl;
+            std::cout << "0. Salir" << std::endl;
+            std::cin >> opcion;
+            switch (opcion) {
+                case 1: {
+                    float radio;
+                    std::cout << "Ingrese el radio del círculo: ";
+                    std::cin >> radio;
+                    Circulo c(radio);
+                    std::cout << "Área: " << c.area() << std::endl;
+                    std::cout << "Perímetro: " << c.perimetro() << std::endl;
+                    std::cout << "Diámetro: " << c.diametro() << std::endl;
+                    break;
+                }
+                case 2: {
+                    float base, altura;
+                    std::cout << "Ingrese la base del triángulo rectángulo: ";
+                    std::cin >> base;
+                    std::cout << "Ingrese la altura del triángulo rectángulo: ";
+                    std::cin >> altura;
+                    TrianguloRectangulo t(base, altura);
+                    std::cout << "Área: " << t.area() << std::endl;
+                    std::cout << "Perímetro: " << t.perimetro() << std::endl;
+                    std::cout << "Hipotenusa: " << t.hipotenusa() << std::endl;
+                    break;
+}
+                case 3: {
+                    std::string nombre;
+                    std::cout << "Ingrese el nombre de la persona: ";
+                    std::cin >> nombre;
+                    Persona p(nombre);
+                    p.presentarse();
+                    break;
+}
+                case 4: {
+                    std::string nombre;
+                    std::cout << "Ingrese el nombre del profesor: ";
+                    std::cin >> nombre;
+                    Profesor p(nombre);
+                    p.presentarse();
+                    break;
+        }
+                case 5: {
+                    std::string nombre;
+                    float promedio;
+                    std::cout << "Ingrese el nombre del estudiante: ";
+                    std::cin >> nombre;
+                    std::cout << "Ingrese el promedio del estudiante: ";
+                    std::cin >> promedio;
+                    Estudiante e(nombre, promedio);
+                    e.presentarse();
+                    std::cout << "¿Puede tomar programación? " << (e.puedeTomarProgramacion() ? "Sí" : "No") << std::endl;
+                    break;
+        }
+                case 0:
+                    std::cout << "Hasta luego!" << std::endl;
+                    break;
+                default:
+                    std::cout << "Opción inválida, intente de nuevo." << std::endl;
+                    break;
+        }
+    }
+}
+};
+
+int main() {
+Menu m;
+m.mostrar();
+return 0;
+}
