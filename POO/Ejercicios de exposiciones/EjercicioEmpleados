@@ -1,0 +1,103 @@
+abstract class Empleado {
+    protected String nombre;
+    protected int edad;
+    protected double salario;
+
+    public Empleado(String nombre, int edad, double salario) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.salario = salario;
+    }
+
+    public abstract void obtenerDetalles();
+    public abstract double calcularSalario();
+}
+
+class EmpleadoTiempoCompleto extends Empleado {
+    private int horasTrabajadas;
+    private double salarioPorHora;
+
+    public EmpleadoTiempoCompleto(String nombre, int edad, double salario, int horasTrabajadas, double salarioPorHora) {
+        super(nombre, edad, salario);
+        this.horasTrabajadas = horasTrabajadas;
+        this.salarioPorHora = salarioPorHora;
+    }
+
+    @Override
+    public void obtenerDetalles() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Edad: " + edad);
+        System.out.println("Salario: " + salario);
+    }
+
+    @Override
+    public double calcularSalario() {
+        return horasTrabajadas * salarioPorHora;
+    }
+}
+
+class EmpleadoTiempoParcial extends Empleado {
+    private int horasTrabajadas;
+    private double salarioPorHora;
+
+    public EmpleadoTiempoParcial(String nombre, int edad, double salario, int horasTrabajadas, double salarioPorHora) {
+        super(nombre, edad, salario);
+        this.horasTrabajadas = horasTrabajadas;
+        this.salarioPorHora = salarioPorHora;
+    }
+
+    @Override
+    public void obtenerDetalles() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Edad: " + edad);
+        System.out.println("Salario: " + salario);
+    }
+
+    @Override
+    public double calcularSalario() {
+        return horasTrabajadas * salarioPorHora;
+    }
+}
+
+class Contratista extends Empleado {
+    private int horasTrabajadas;
+    private double tarifaPorHora;
+
+    public Contratista(String nombre, int edad, double salario, int horasTrabajadas, double tarifaPorHora) {
+        super(nombre, edad, salario);
+        this.horasTrabajadas = horasTrabajadas;
+        this.tarifaPorHora = tarifaPorHora;
+    }
+
+    @Override
+    public void obtenerDetalles() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Edad: " + edad);
+        System.out.println("Salario: " + salario);
+    }
+
+    @Override
+    public double calcularSalario() {
+        if (horasTrabajadas > 40) {
+            return horasTrabajadas * tarifaPorHora * 2;
+        } else {
+            return horasTrabajadas * tarifaPorHora;
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Empleado[] empleados = new Empleado[3];
+
+        empleados[0] = new EmpleadoTiempoCompleto("Juan", 30, 2000, 40, 50);
+        empleados[1] = new EmpleadoTiempoParcial("María", 25, 1000, 20, 30);
+        empleados[2] = new Contratista("Pedro", 35, 1500, 50, 40);
+
+        for (Empleado empleado : empleados) {
+            empleado.obtenerDetalles();
+            System.out.println("Salario calculado: " + empleado.calcularSalario());
+            System.out.println();
+        }
+    }
+}
