@@ -1,0 +1,59 @@
+abstract class Persona {
+    protected String nombre;
+    protected int edad;
+
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+}
+
+abstract class Legislador extends Persona {
+    protected String provinciaQueRepresenta;
+
+    public Legislador(String nombre, int edad, String provinciaQueRepresenta) {
+        super(nombre, edad);
+        this.provinciaQueRepresenta = provinciaQueRepresenta;
+    }
+
+    public abstract String getCamaraEnQueTrabaja();
+}
+
+class Diputado extends Legislador {
+    public Diputado(String nombre, int edad, String provinciaQueRepresenta) {
+        super(nombre, edad, provinciaQueRepresenta);
+    }
+
+    @Override
+    public String getCamaraEnQueTrabaja() {
+        return "Diputados";
+    }
+}
+
+class Senador extends Legislador {
+    public Senador(String nombre, int edad, String provinciaQueRepresenta) {
+        super(nombre, edad, provinciaQueRepresenta);
+    }
+
+    @Override
+    public String getCamaraEnQueTrabaja() {
+        return "Senado";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Legislador legislador1 = new Diputado("Juan Pérez", 40, "Buenos Aires");
+        Legislador legislador2 = new Senador("María González", 50, "Córdoba");
+
+        // Crear una lista de legisladores
+        List<Legislador> legisladores = new ArrayList<>();
+        legisladores.add(legislador1);
+        legisladores.add(legislador2);
+
+        // Mostrar la cámara en que trabajan
+        for (Legislador legislador : legisladores) {
+            System.out.println(legislador.nombre + " trabaja en la cámara: " + legislador.getCamaraEnQueTrabaja());
+        }
+    }
+}
