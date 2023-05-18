@@ -1,0 +1,14 @@
+import java.util.Date;
+
+Class Main {
+  public static void main(String[] args)
+{
+  Date fecha = new Date();
+  System.out.println(" ");
+  System.out.println(fecha);
+  
+  Date fecha02 = new Date(123, 3, 22);
+  System.out.println(" ");
+  System.out.println(fecha02);
+  }
+}
