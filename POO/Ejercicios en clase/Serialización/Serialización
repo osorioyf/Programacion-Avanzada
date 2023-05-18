@@ -1,0 +1,32 @@
+import java.util.io.*;
+
+public class ContactoOutput
+{
+   private FileOutputStream file;
+   private ObjectOutputStream output;
+   
+   //Abrir el fichero
+   
+   public void abrir()
+            trhows IOException
+   {
+     file = new FileOutputStream( "clientes.ser" );
+     output = new ObjectOutputStream(file);
+   }
+   
+   //Cerrar el fichero
+   public void cerrar()
+          throws IOExcepction
+   {
+     if (output! = null)
+         output.close();
+   }
+   
+   //Escribir en el fichero
+   public void escribir (Contacto contacto)
+          throws IOExcepction
+   {
+     if (output!=null)
+         outout.writeObject(contacto);
+    }
+}
